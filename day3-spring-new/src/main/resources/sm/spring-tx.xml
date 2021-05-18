@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--装配属性文件-->
+    <context:property-placeholder location="dataSource.properties" file-encoding="UTF-8" />
+
+    <!--把数据库的数据源信息对象交给spring容器管理-->
+    <bean id="MyDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver_class}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--把Mybatis的SqlSessionFactory对象整合到Spring容器管理-->
+    <bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="MyDataSource"/>
+        <!--配置Mybatis对应Mapper文件-->
+        <property name="mapperLocations" value="mapper/OrderMapper.xml" />
+    </bean>
+
+    <!--通过spring容器创建Mapper接口代理对象交给spring容器管理-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.zhaoxi.edu.net.sm.mapper" />
+    </bean>
+
+    <!--要进行事务管理必须配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="MyDataSource" />
+    </bean>
+
+    <!--&lt;!&ndash;配置通知&ndash;&gt;
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            &lt;!&ndash;
+                事务隔离级别：
+                读未提交，读已提交，可重复读，序列化
+                事务传播性： 7种，NO_SUPPORTS,SUPPORTS,REQUIRED,REQUIRED_NEW
+            &ndash;&gt;
+            <tx:method name="add*" isolation="REPEATABLE_READ" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    &lt;!&ndash;组装通知和切入点&ndash;&gt;
+    <aop:config>
+        &lt;!&ndash;配置切入点&ndash;&gt;
+        <aop:pointcut id="pcut" expression="execution(* com.zhaoxi.edu.net.jdbc.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pcut" />
+    </aop:config>-->
+
+    <!--基于注解的方式管理事务-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean name="orderService" class="com.zhaoxi.edu.net.sm.service.OrderServiceImpl">
+        <property name="orderDAO" ref="orderMapper"/>
+    </bean>
+</beans>

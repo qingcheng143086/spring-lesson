@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean name="collections" class="com.zhaoxi.edu.demo.bean.FuheInterfaceImpl">
+        <!--装配List集合-->
+        <property name="lists">
+            <list>
+                <value>List-1</value>
+                <value>List-2</value>
+                <value>List-3</value>
+                <value>List-4</value>
+            </list>
+        </property>
+        <!--装配Set集合-->
+        <property name="sets">
+            <set>
+                <value>Set-1</value>
+                <value>Set-2</value>
+                <value>Set-3</value>
+                <value>Set-4</value>
+            </set>
+        </property>
+        <!--Map集合装配-->
+        <property name="maps">
+            <map>
+                <entry key="key-1" value="value-1" />
+                <entry key="key-2" value="value-2" />
+                <entry key="key-3" value="value-3" />
+                <entry key="key-4" value="value-4" />
+            </map>
+        </property>
+        <!--装配Properties-->
+        <property name="pros">
+            <props>
+                <prop key="pros-1">value-1</prop>
+                <prop key="pros-2">value-2</prop>
+                <prop key="pros-3">value-3</prop>
+                <prop key="pros-4">value-4</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

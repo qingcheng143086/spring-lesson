@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--1、告诉spring容器SomeServiceImpl类生命周期需要你进行管理-->
+    <bean id="someService" class="com.zhaoxi.edu.demo.SomeServiceImpl" />
+    <!--lazy-init="true" 配置Bean是延迟初始化的-->
+    <bean name="javaBean" class="com.zhaoxi.edu.demo.JavaBean" lazy-init="true" />
+    
+    <!--创建ServiceBean配置-->
+    <bean name="serviceBean" class="com.zhaoxi.edu.demo.ServiceBean">
+        <!--配置使用属性的setter方法进行依赖对象注入操作【需要注入的属性必须提供setter】-->
+        <!--
+            name: 提供了setter方法的属性名称
+            ref: 容器中已经有的bean名称
+            // 实质就是调用了getBean的过程
+        -->
+        <property name="service" ref="someService" />
+        <!--装配是普通属性的值-->
+        <property name="name" value="zhaoxi" />
+    </bean>
+</beans>

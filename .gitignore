@@ -1,0 +1,8 @@
+# Project exclude paths
+/day1-spring/target/
+/day3-spring/target/
+/day3-spring-new/target/
+/day4-Spring/target/
+/day5-Mybatis/target/
+/day6-springmvc/target/
+/spring-day2/target/

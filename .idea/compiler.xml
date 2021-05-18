@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="day3-spring" />
+        <module name="day5-Mybatis" />
+        <module name="day6-springmvc" />
+        <module name="day1-spring" />
+        <module name="day5-spring" />
+        <module name="spring-day2" />
+        <module name="day3-spring-new" />
+        <module name="day4-Spring" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

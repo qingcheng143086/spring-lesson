@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--1、告诉spring容器SomeServiceImpl类生命周期需要你进行管理-->
+    <!--scope: bean作用域
+           singleton： spring框架默认创建Bean对象行为
+           prototype： 多例，【每次从容器中获取对象不是同一个】
+    -->
+    <bean name="someService1" class="com.zhaoxi.edu.demo.SomeServiceImpl1" scope="prototype" />
+
+    <!--创建ServiceBean配置-->
+    <bean name="serviceBean_cto" class="com.zhaoxi.edu.demo.ServiceBean">
+        <!--使用构造函数注入-->
+        <constructor-arg name="service" ref="someService1" />
+        <constructor-arg name="name" value="zhaoxi-2" />
+    </bean>
+</beans>

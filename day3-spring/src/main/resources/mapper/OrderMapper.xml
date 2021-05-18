@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaoxi.edu.net.jdbc.dao.OrderMapper">
+    <insert id="insertOrder">
+        INSERT INTO `bootdb`.`order_1991`
+                (`order_id`, `order_money`, `order_address`)
+                    VALUES (#{orderId},#{orderMoney},#{orderAddress})
+    </insert>
+</mapper>

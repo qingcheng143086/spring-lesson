@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--    &lt;!&ndash;配置前端控制器实质就是配置Servlet &ndash;&gt;-->
+<!--    <servlet>-->
+<!--        <servlet-name>springMVC</servlet-name>-->
+<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+<!--        &lt;!&ndash;要求DispatcherServlet实例和Web服务器同时实例化&ndash;&gt;-->
+<!--        <init-param>-->
+<!--            <param-name>contextConfigLocation</param-name>-->
+<!--            <param-value>classpath:spring-mvc.xml</param-value>-->
+<!--        </init-param>-->
+<!--        &lt;!&ndash;里面设置值越大执行优先级越高&ndash;&gt;-->
+<!--        <load-on-startup>0</load-on-startup>-->
+<!--    </servlet>-->
+<!--    &lt;!&ndash;配置Servlet&ndash;&gt;-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>springMVC</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--配置springMVC前端控制器,实质也就是配置service-->
+    <servlet>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!--要求DispatcherServlet与service同时初始化-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springMVC.xml</param-value>
+        </init-param>
+        <!--数字越大，优先级越高-->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>

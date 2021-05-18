@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaoxi.java.vip.mapper.UserMapper">
+    <!--自定义映射Map-->
+    <resultMap id="userMap" type="com.zhaoxi.java.vip.pojo.User">
+        <!--注解及普通属性设置-->
+        <!--主键设置-->
+        <id property="userId" column="user_id" />
+        <!--非主键-->
+        <result property="userName" column="name" />
+        <result property="userGender" column="user_gender" />
+        <result property="userBirthday" column="user_birthday" />
+    </resultMap>
+
+    <!--增加-->
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO `bootdb`.`t_user`(`user_id`, `name`, `user_birthday`, `user_gender`)
+            VALUES (#{userId}, #{userName}, #{userBirthday}, #{userGender});
+    </insert>
+
+    <!--删除-->
+    <delete id="deleteById">
+        DELETE FROM `bootdb`.`t_user` where user_id = #{userId}
+    </delete>
+
+    <!--修改-->
+    <update id="updateById" parameterType="User">
+        UPDATE `bootdb`.`t_user` SET `name` = #{userName}, `user_birthday` = #{userBirthday}, `user_gender` = #{userGender} WHERE `user_id` = #{userId};
+    </update>
+
+    <!--查询所有-->
+    <select id="queryAll" resultMap="userMap">
+        select `user_id`, `name`, `user_birthday`, `user_gender` from t_user
+    </select>
+
+    <!--根据ID查询-->
+    <select id="queryById" resultMap="userMap">
+        select `user_id`, `name`, `user_birthday`, `user_gender` from t_user where user_id = #{id}
+    </select>
+</mapper>

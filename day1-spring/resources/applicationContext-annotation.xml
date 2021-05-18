@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--
+        进行包扫描形式来管理需要交给spring容器的bean
+        //1、如何告诉spring容器我需要被你管理？
+        // 在需要交给spring容器管理的类上面进行标记
+        // @Repository 主要标记在数据访问层对应实现类上面
+        // @Service    标记在业务逻辑层的实现类上面
+        // @Controller 标记在控制层类上面
+        // @Component  不清楚这层到底属于哪一类，这个时候就可以标记为@Component
+        //2、被扫描管理者Bean在我需要使用时候如何完成依赖注入？
+        // 使用@Autowired注解完成依赖注入 【spring框架提供】
+        // 使用@Resource注解完成依赖注入 【Java自带注解】
+    -->
+    <context:component-scan base-package="com.gerry.demo.superman" />
+</beans>
